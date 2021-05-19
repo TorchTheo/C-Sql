@@ -13,10 +13,20 @@ vector<string> Controller::tableNames;
 
 void Controller::doSql() {
     string str;
-    getline(cin, str);
-    if(str[str.length() - 1] != ';') {
-        cout<<"Error!\n";
+    string temp;
+    getline(cin, temp);
+    if(temp.empty())
+    	exit(0);
+    if(temp[0] == ';') {
+        cout<<"ERROR"<<endl;
         return;
+    }
+    while (1) {
+        str += " " + temp;
+        if(str[str.length() - 1] == ';')
+            break;
+        cout << "···· ";
+        getline(cin, temp);
     }
     str.pop_back();
     Sql *sql = new Sql(str);

@@ -163,7 +163,7 @@ void CTable::showTable(string column) {
                     cout << this->objects[i]->attributes_val[this->attributes[j]] + "\t";
                     break;
                 }
-        }
+            }
         cout<<endl;
     }
 }
@@ -567,7 +567,7 @@ void CTable::updateAttribute(string column, string condition) {
         }
     }
     if(!f) {
-        cout<<"UPDATE ERROR: TABLE " + this->TName + " DOESN'T HAVE ATTRIBUTE" + col + "\n";
+        cout<<"UPDATE ERROR: TABLE " + this->TName + " DOESN'T HAVE ATTRIBUTE " + col + "\n";
         return;
     }
     int numOfUpdatedRecords = 0;
@@ -727,7 +727,7 @@ void CTable::alterDrop(string attribute) {
         }
     }
     if(!flag) {
-        cout<<"ALTER ERROR: TABLE " + this->TName + " DOESN'T HAVE ATTRIBUTE " + attribute;
+        cout<<"ALTER ERROR: TABLE " + this->TName + " DOESN'T HAVE ATTRIBUTE " + attribute + "\n";
         return;
     }
     for(int i = 0; i < this->objects.size(); i++) {

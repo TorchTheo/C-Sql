@@ -38,9 +38,9 @@ int Sql::anaSql() {
             return SQLACTION::CREATE_TABLE;
         }
     }
-    else if(this->originSql == "exit" || this->originSql == "quit")
+    else if(this->targetSql.size() == 1 && (Controller::upper(this->targetSql[0]) == "EXIT" || Controller::upper(this->targetSql[0]) == "QUIT"))
         return SQLACTION::EXIT_SYSTEM;
-    else if (Controller::upper(this->originSql)  == "SHOW TABLES")
+    else if (this->targetSql.size() == 2 && Controller::upper(this->targetSql[0])  == "SHOW" && Controller::upper(this->targetSql[1])  == "TABLES")
         return SQLACTION::SHOW_TABLES;
     else if(Controller::upper(this->targetSql[0]) == "DROP" && Controller::upper(this->targetSql[1]) == "TABLE") {
         if(this->targetSql.size() != 3)
@@ -57,6 +57,5 @@ int Sql::anaSql() {
         return SQLACTION::DELETE;
     else if(Controller::upper(this->targetSql[0]) == "ALTER")
         return SQLACTION::ALTER;
-    else
-        return SQLACTION::UNKNOWNSQL_ERROR;
+    return SQLACTION::UNKNOWNSQL_ERROR;
 }
